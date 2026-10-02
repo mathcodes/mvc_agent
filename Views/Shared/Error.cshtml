@@ -1,0 +1,15 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Something went wrong";
+}
+
+<section class="error-page">
+    <p class="eyebrow">REQUEST INTERRUPTED</p>
+    <h1>Something went wrong.</h1>
+    <p>Try returning to the workspace and sending your prompt again.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="request-id">Reference: @Model.RequestId</p>
+    }
+    <a class="submit-button link-button" asp-controller="AI" asp-action="Index">Back to workspace <span aria-hidden="true">&#8594;</span></a>
+</section>

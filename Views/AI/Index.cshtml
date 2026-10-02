@@ -1,0 +1,45 @@
+@model RequestResponseModel
+@{
+    ViewData["Title"] = "Ask a question";
+}
+
+<section class="workspace" aria-labelledby="page-title">
+    <div class="intro">
+        <p class="eyebrow">YOUR AI WORKSPACE</p>
+        <h1 id="page-title">What are you<br />thinking about?</h1>
+        <p class="intro-copy">Bring a question, a rough idea, or a knotty problem. Start wherever you are.</p>
+    </div>
+
+    <div class="conversation">
+        <form asp-controller="AI" asp-action="Index" method="post" class="prompt-form">
+            <label asp-for="Prompt" class="field-label">Write your prompt</label>
+            <textarea asp-for="Prompt" class="prompt-input" rows="6" placeholder="Ask a question or describe what you need help with..." autofocus></textarea>
+            <span asp-validation-for="Prompt" class="validation-message"></span>
+            <div class="form-bottom">
+                <span class="input-hint">Be as brief or detailed as you like.</span>
+                <button class="submit-button" type="submit">
+                    <span>Send prompt</span>
+                    <span aria-hidden="true">&#8594;</span>
+                </button>
+            </div>
+        </form>
+
+        @if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+        {
+            <div class="notice notice-error" role="alert">
+                <strong>We couldn't get a response.</strong>
+                <p>@Model.ErrorMessage</p>
+            </div>
+        }
+        else if (!string.IsNullOrWhiteSpace(Model.Response))
+        {
+            <section class="response" aria-labelledby="response-title" aria-live="polite">
+                <div class="response-heading">
+                    <span class="response-mark" aria-hidden="true">F</span>
+                    <h2 id="response-title">Response</h2>
+                </div>
+                <div class="response-body">@Model.Response</div>
+            </section>
+        }
+    </div>
+</section>
