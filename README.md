@@ -2,6 +2,10 @@
 
 A small ASP.NET Core MVC app that sends a prompt to the OpenAI Chat Completions API and displays the response.
 
+## App
+<!-- make image responsive and smaller -->  
+<img src="wwwroot/images/landing_page.png" alt="alt text" style="max-width: 80%; height: auto; display: block; margin: 0 auto;">
+
 ## Requirements
 
 - .NET 8 SDK
